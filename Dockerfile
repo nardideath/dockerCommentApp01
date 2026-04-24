@@ -8,6 +8,7 @@ RUN apt-get -y install libffi-dev gcc python3-dev python3-pip musl-dev libssl-de
 
 COPY . .
 
+RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 CMD ["python", "main.py"] 
