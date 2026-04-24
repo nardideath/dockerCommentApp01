@@ -6,9 +6,11 @@ RUN apt-get update
 RUN apt-get -y install sed attr dialog bash bash-doc bash-completion grep nano net-tools iputils-ping sshpass
 RUN apt-get -y install libffi-dev gcc python3-dev python3-pip musl-dev libssl-dev cargo make rsync build-essential postgresql-server-dev-all
 
-COPY . .
+COPY requirements.txt .
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
+
+COPY . .
 
 CMD ["python", "main.py"] 
