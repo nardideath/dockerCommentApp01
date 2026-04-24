@@ -5,7 +5,24 @@ from datautils import *
 
 
 def main():
+
     wait_for_db()
+
+    comments = fetch_comments()
+
+    conn = get_conn()
+
+    init_db(conn)
+
+    insert_data(conn, comments)
+
+    result = group_by_post_id(comments)
+
+    save_results(result)
+
+    conn.close()
+
+
 
 #    conn = psycopg2.connect(
 #        host=DB_HOST,

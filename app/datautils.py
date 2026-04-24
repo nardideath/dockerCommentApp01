@@ -6,7 +6,7 @@ def fetch_comments():
     comments_url = os.getenv("COMMENTS_URL")
     print(f"Fetching data from remote API... ({comments_url})")
 
-    response = requests.get()
+    response = requests.get(comments_url)
     response.raise_for_status()
 
     data = response.json()
