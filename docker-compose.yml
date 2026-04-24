@@ -10,13 +10,8 @@ services:
     depends_on:
       - db
 
-    environment:
-      DB_HOST: db
-      DB_NAME: testdb
-      DB_USER: user
-      DB_PASSWORD: password
-      COMMENTS_URL: "https://jsonplaceholder.typicode.com/comments"
-      RESULT_FILE: "/storage/results.txt"
+    env_file:
+      - .env.app.dev 
 
     volumes:
       - ./app_data:/storage
@@ -31,10 +26,8 @@ services:
     image: postgres:15
     container_name: dockerCommentDB
 
-    environment:
-      POSTGRES_DB: testdb
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
+    env_file:
+      - .env.db.dev
     
     networks:
       - my_network
