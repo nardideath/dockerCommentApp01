@@ -1,0 +1,46 @@
+services:
+
+  app:
+    build:
+      context: ./app
+      dockerfile: ../Dockerfile
+    
+    container_name: dockerCommentApp
+    
+    depends_on:
+      - db
+
+    env_file:
+      - .env.app.dev 
+
+    volumes:
+      - ./app_data:/storage
+
+    networks:
+      - my_network
+
+    command: python main.py
+
+
+  db:
+    image: postgres:15
+    container_name: dockerCommentDB
+
+    env_file:
+      - .env.db.dev
+    
+    networks:
+      - my_network
+
+#    restart: unless-stopped
+#
+#    ports:
+#      - "5432:5432"
+#
+#    volumes:
+#      - ./db_data:/var/lib/postgresql/data
+
+networks:
+  my_network:
+  
+  
